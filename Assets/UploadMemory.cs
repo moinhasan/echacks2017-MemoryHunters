@@ -18,7 +18,7 @@ public class UploadMemory : MonoBehaviour {
 	}
 
 	public void Upload () {
-		String s = input.text;
+		string s = input.text;
 
 	}
 }
