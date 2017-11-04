@@ -30,6 +30,8 @@ namespace GoogleARCore.HelloAR
     /// </summary>
     public class HelloARController : MonoBehaviour
     {
+        MemoryObject memObject;
+
         /// <summary>
         /// The first-person camera being used to render the passthrough camera.
         /// </summary>
@@ -71,6 +73,34 @@ namespace GoogleARCore.HelloAR
             new Color(1.0f, 0.921f, 0.231f),
             new Color(1.0f, 0.756f, 0.027f)
         };
+
+        private void Start()
+        {
+            
+            Vector3 position = new Vector3(0, 0, 40);
+            var anchor = Session.CreateAnchor(position, Quaternion.identity);
+
+            // Intanstiate an Andy Android object as a child of the anchor; it's transform will now benefit
+            // from the anchor's tracking.
+            var memoryObj = Instantiate(Resources.Load("MemoryObject"), position, Quaternion.identity,
+                anchor.transform) as GameObject;
+
+            // Andy should look at the camera but still be flush with the plane.
+            memoryObj.transform.LookAt(m_firstPersonCamera.transform);
+            memoryObj.transform.rotation = Quaternion.Euler(0.0f,
+                memoryObj.transform.rotation.eulerAngles.y, memoryObj.transform.rotation.z);
+
+            TrackableHitFlag raycastFilter = TrackableHitFlag.PlaneWithinBounds | TrackableHitFlag.PlaneWithinPolygon;
+            TrackableHit hit;
+            if (Session.Raycast(m_firstPersonCamera.ScreenPointToRay(memoryObj.transform.position), raycastFilter, out hit))
+            {
+                memoryObj.GetComponent<PlaneAttachment>().Attach(hit.Plane);
+            }
+
+            // Use a plane attachment component to maintain Andy's y-offset from the plane
+            // (occurs after anchor updates).
+            //memoryObj.GetComponent<PlaneAttachment>().Attach(hit.Plane);
+        }
 
         /// <summary>
         /// The Unity Update() method.
