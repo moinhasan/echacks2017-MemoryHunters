@@ -78,7 +78,9 @@ namespace GoogleARCore.HelloAR
 
         private void Start()
         {
-            Vector3 spawnPosition = new Vector3(0, 0, 20);
+            int x = Random.Range(-40, 40);
+            int z = Random.Range(-40, 40);
+            Vector3 spawnPosition = new Vector3(x, 0, z);
             GameObject obj = Instantiate(memoryObject, spawnPosition, Quaternion.identity);
             memObj = obj.GetComponent<MemoryObject>();
             memObj.Properties = ProgramManager.memories[0];

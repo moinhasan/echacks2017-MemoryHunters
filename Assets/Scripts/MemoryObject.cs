@@ -30,9 +30,13 @@ public class MemoryObject : MonoBehaviour {
     private bool Raycast()
     {
         RaycastHit objectHit;
+        Vector3 fromPosition = transform.position;
+        Vector3 toPosition = Camera.main.transform.position;
+        Vector3 direction = toPosition - fromPosition;
         Vector3 fwd = transform.TransformDirection(-Vector3.forward);
-        Debug.DrawRay(transform.position, fwd * 50, Color.green);
-        if (Physics.Raycast(transform.position, fwd, out objectHit))
+        //Vector3 direction = (Camera.main.transform.position - transform.position);
+        Debug.DrawRay(transform.position, direction, Color.green);
+        if (Physics.Raycast(transform.position, direction, out objectHit))
         {
             if (objectHit.collider.gameObject.CompareTag("View"))
             {

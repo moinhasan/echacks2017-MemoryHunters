@@ -27,7 +27,7 @@ public class ViewMemory : MonoBehaviour {
         message.text =  memoryToView.Message;
 		user.text = memoryToView.User.Name + " " + memoryToView.User.Level;
 		commentPanel.gameObject.SetActive(false);
-		foreach( Comment c in ProgramManager.memories[index].Comments ){
+		foreach( Comment c in memoryToView.Comments ){
 			updateComment (c);
 		}
 		commentsScrollViewText.text = commentsForPost;
@@ -62,6 +62,7 @@ public class ViewMemory : MonoBehaviour {
 		Comment c = new Comment(ProgramManager.currentUser.Name,commentInput.text);
 		updateComment (c);
         memoryToView.Comments.Add(c);
+        commentInput.text = "";
 		commentPanel.gameObject.SetActive (false);
 	}
 
