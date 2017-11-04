@@ -9,6 +9,15 @@ public class MemoryProperties  {
     public List<Comment> Comments { get; set; }
     public int NumberOfLikes { get; protected set; }
 
+
+    public MemoryProperties(string uploader, string message)
+    {
+        Uploader = uploader;
+        Message = message;
+        Comments = new List<Comment>();
+
+    }
+
     public void IncrementLike()
     {
         NumberOfLikes++;

@@ -19,6 +19,9 @@ public class UploadMemory : MonoBehaviour {
 
 	public void Upload () {
 		string s = input.text;
-
+        MemoryProperties newMemory = new MemoryProperties("person's name", s);
+        ProgramManager.memories.Add(newMemory);
+        input.text = "";
+        print(ProgramManager.memories[0].Message);
 	}
 }
