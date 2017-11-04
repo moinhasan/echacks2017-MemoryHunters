@@ -5,14 +5,60 @@ using UnityEngine;
 public class MemoryObject : MonoBehaviour {
     
     public MemoryProperties Properties { get; set; }
+    Renderer myRenderer;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void Start()
+    {
+        myRenderer = GetComponent<Renderer>();
+    }
+
+    private void Update()
+    {
+        if (Raycast())
+        {
+            myRenderer.material.color = Color.red;
+        }
+        else
+        {
+            myRenderer.material.color = Color.white;
+        }
+    }
+
+    private bool Raycast()
+    {
+        RaycastHit objectHit;
+        Vector3 fwd = transform.TransformDirection(-Vector3.forward);
+        Debug.DrawRay(transform.position, fwd * 50, Color.green);
+        if (Physics.Raycast(transform.position, fwd, out objectHit))
+        {
+            if (objectHit.collider.gameObject.CompareTag("View"))
+            {
+                return true;
+
+            }
+        }
+        return false;
+    }
+    /* private GameObject MouseRaycast(List<Node> movementRange)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        RaycastHit hit;
+        Physics.Raycast(ray, out hit, int.MaxValue);
+
+        if(hit.collider != null && !EventSystem.current.IsPointerOverGameObject())
+        {
+            Tile tile = hit.collider.gameObject.GetComponent<Tile>();
+            Enemy enemy = hit.collider.gameObject.GetComponent<Enemy>();
+
+            //For movement
+            if (tile != null && !Attacking && movementRange.Contains(GetTargetNode(tile)))
+                return hit.collider.gameObject;
+            //For attacking
+            else if (enemy != null && Pathfinding.GetRange(Nodes, friendlies[0].nodeParent, lastSelectedAttack.Range).Contains(enemy.nodeParent))
+                return hit.collider.gameObject;
+        }
+        return null;
+        
+    }*/
 }
