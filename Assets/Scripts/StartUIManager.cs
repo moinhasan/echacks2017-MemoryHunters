@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class StartUIManager : MonoBehaviour {
 
@@ -13,5 +14,6 @@ public class StartUIManager : MonoBehaviour {
         ProgramManager.currentUser = user;
         print("Created user of name" + user.Name);
         //switch scenes
+        SceneManager.LoadScene(1);
     }
 }

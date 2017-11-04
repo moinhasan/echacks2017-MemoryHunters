@@ -9,5 +9,14 @@ EditorBuildSettings:
     path: Assets/GoogleARCore/HelloARExample/Scenes/HelloAR.unity
     guid: e6a6fa04348cb45c9b0221eb19c946da
   - enabled: 1
+    path: Assets/_Scenes/Start.unity
+    guid: ee63ec90b8d17114e9b297af41d73f36
+  - enabled: 1
+    path: Assets/_Scenes/Upload.unity
+    guid: 3ea209f7a516a4e34930a9f4681f76d9
+  - enabled: 1
     path: Assets/_Scenes/MainAR.unity
     guid: 8e35fc02c61f9464e876979e7ff398e8
+  - enabled: 1
+    path: Assets/_Scenes/ViewMemory.unity
+    guid: 33fee9fc3a28046e4822f53e8dd44e93

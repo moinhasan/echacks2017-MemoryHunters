@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UploadMemory : MonoBehaviour {
 
@@ -19,9 +20,10 @@ public class UploadMemory : MonoBehaviour {
 
 	public void Upload () {
 		string s = input.text;
-        MemoryProperties newMemory = new MemoryProperties("person's name", s);
+        MemoryProperties newMemory = new MemoryProperties(ProgramManager.currentUser, s);
         ProgramManager.memories.Add(newMemory);
         input.text = "";
-        print(ProgramManager.memories[0].Message);
+        //Temp load the AR scene
+        SceneManager.LoadScene(2);
 	}
 }

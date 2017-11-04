@@ -7,6 +7,8 @@ public class MemoryObject : MonoBehaviour {
     public MemoryProperties Properties { get; set; }
     Renderer myRenderer;
 
+    public bool isFocused;
+
     private void Start()
     {
         myRenderer = GetComponent<Renderer>();
@@ -14,7 +16,8 @@ public class MemoryObject : MonoBehaviour {
 
     private void Update()
     {
-        if (Raycast())
+        isFocused = Raycast();
+        if (isFocused)
         {
             myRenderer.material.color = Color.red;
         }

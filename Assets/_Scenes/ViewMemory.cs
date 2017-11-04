@@ -6,12 +6,13 @@ using UnityEngine.UI;
 
 public class ViewMemory : MonoBehaviour {
 
+    public static MemoryProperties memoryToView;
+
 	public TextMeshProUGUI message;
 	public TextMeshProUGUI user;
 	public int index = 0;
 	public Transform commentPanel;
 	public TMP_InputField commentInput;
-	public Transform mainPanel;
 	public Button submitCommentButton;
 	public TextMeshProUGUI commentsScrollViewText;
 	public TextMeshProUGUI likesDisplay;
@@ -21,15 +22,16 @@ public class ViewMemory : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		ProgramManager.memories.Add (new MemoryProperties ("Person", "Message"));
-        message.text =  ProgramManager.memories[index].Message;
-		user.text = ProgramManager.memories [index].Uploader;
+        //ProgramManager.memories.Add (new MemoryProperties ("Person", "Message"));
+        //MemoryProperties selectedMemory = ProgramManager.memories[index];
+        message.text =  memoryToView.Message;
+		user.text = memoryToView.User.Name + " " + memoryToView.User.Level;
 		commentPanel.gameObject.SetActive(false);
 		foreach( Comment c in ProgramManager.memories[index].Comments ){
 			updateComment (c);
 		}
 		commentsScrollViewText.text = commentsForPost;
-		likesDisplay.text = "Likes: " + ProgramManager.memories [index].NumberOfLikes;
+		likesDisplay.text = "Likes: " + memoryToView.NumberOfLikes;
 	}
 
 	void Update(){
@@ -57,10 +59,9 @@ public class ViewMemory : MonoBehaviour {
 	}
 
 	public void submitComment(){
-		Comment c = new Comment("commenter",commentInput.text);
+		Comment c = new Comment(ProgramManager.currentUser.Name,commentInput.text);
 		updateComment (c);
-        ProgramManager.memories [index].Comments.Add(c);
-		commentInput.text = "";
+        memoryToView.Comments.Add(c);
 		commentPanel.gameObject.SetActive (false);
 	}
 

@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class MemoryProperties  {
 
-    public string Uploader { get; set; }
+    public User User { get; set; }
     public string Message { get; set; }
     public List<Comment> Comments { get; set; }
     public int NumberOfLikes { get; protected set; }
 
 
-    public MemoryProperties(string uploader, string message)
+    public MemoryProperties(User user, string message)
     {
-        Uploader = uploader;
+        User = user;
         Message = message;
         Comments = new List<Comment>();
 
