@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Memory : MonoBehaviour {
+public class MemoryProperties  {
 
     public string Uploader { get; set; }
     public string Message { get; set; }
