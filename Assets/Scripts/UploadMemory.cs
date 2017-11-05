@@ -26,7 +26,7 @@ public class UploadMemory : MonoBehaviour {
         //Temp load the AR scene
         //SceneManager.LoadScene(1);
         //remove this:
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
 	}
 
 	public void cancel(){

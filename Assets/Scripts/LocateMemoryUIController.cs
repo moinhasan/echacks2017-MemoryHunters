@@ -24,7 +24,7 @@ public class LocateMemoryUIController : MonoBehaviour {
     {
         print("viewing memory");
         ViewMemory.memoryToView = GoogleARCore.HelloAR.HelloARController.memObj.Properties;
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4);
     }
     
 }

@@ -75,6 +75,7 @@ public class StartUIManager : MonoBehaviour {
 			} else {
 				User u = new User (username, password);
 				UserList.curUser = u;
+                ProgramManager.currentUser = UserList.curUser;
 				//switch scenes
 				SceneManager.LoadScene(1);
 			}

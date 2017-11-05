@@ -8,6 +8,8 @@ public class ViewMemory : MonoBehaviour {
 
     public static MemoryProperties memoryToView;
 
+    public Image heart;
+
 	public TextMeshProUGUI message;
 	public TextMeshProUGUI user;
 	public int index = 0;
@@ -46,9 +48,15 @@ public class ViewMemory : MonoBehaviour {
 	}
 
 	public void like(){
-        ProgramManager.memories [index].IncrementLike();
-		likesDisplay.text = "Likes: " + ProgramManager.memories [index].NumberOfLikes;
-	}
+        if(heart.color != Color.red)
+        {
+            memoryToView.IncrementLike();
+            heart.color = Color.red;
+            likesDisplay.text = "Likes: " + memoryToView.NumberOfLikes;
+        }
+
+
+    }
 
 	public void startComment(){
 		commentPanel.gameObject.SetActive (true);

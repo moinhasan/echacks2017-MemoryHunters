@@ -19,4 +19,8 @@ public class MapUIController : MonoBehaviour {
     {
         SceneManager.LoadScene(2);
     }
+    public void OnLogOut()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
