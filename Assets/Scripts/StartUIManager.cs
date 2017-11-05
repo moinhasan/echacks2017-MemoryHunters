@@ -17,6 +17,8 @@ public class StartUIManager : MonoBehaviour {
 	public TextMeshProUGUI signUpErrorField;
 	public TextMeshProUGUI logInErrorField;
 
+	public Transform passwordFIeld;
+
 	void Start(){
 		logInPanel.gameObject.SetActive (false);
 		signUpPanel.gameObject.SetActive (true);
