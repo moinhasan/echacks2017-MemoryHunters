@@ -23,10 +23,8 @@ public class UploadMemory : MonoBehaviour {
         MemoryProperties newMemory = new MemoryProperties(ProgramManager.currentUser, s);
         ProgramManager.memories.Add(newMemory);
         input.text = "";
-        //Temp load the AR scene
-        //SceneManager.LoadScene(1);
-        //remove this:
-        SceneManager.LoadScene(3);
+
+        SceneManager.LoadScene(1);
 	}
 
 	public void cancel(){

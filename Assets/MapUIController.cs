@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class MapUIController : MonoBehaviour {
 
 	public Transform AchievementsPanel;
+    public Button MemoryNearbyButton;
 
 	public TextMeshProUGUI task1;
 	public TextMeshProUGUI reward1;
@@ -21,13 +23,21 @@ public class MapUIController : MonoBehaviour {
 		AchievementsPanel.gameObject.SetActive (false);
 		Achievements.AchievementsList.Add(new Achievement("Find 1 orb",10));
 		Achievements.AchievementsList.Add(new Achievement("Find 5 orbs",100));
-
+        
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(ProgramManager.memories.Count > 0 && ProgramManager.memories[0].User != ProgramManager.currentUser)
+        {
+            //display button
+            MemoryNearbyButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            MemoryNearbyButton.gameObject.SetActive(false);
+        }
 	}
 
 	public void seeAchievements(){
@@ -61,5 +71,10 @@ public class MapUIController : MonoBehaviour {
     public void OnLogOut()
     {
         SceneManager.LoadScene(0);
+    }
+    public void OnMemmoryNearbyClicked()
+    {
+        ViewMemory.memoryToView = ProgramManager.memories[0];
+        SceneManager.LoadScene(3);
     }
 }
