@@ -17,14 +17,14 @@ public class MemoryObject : MonoBehaviour {
     private void Update()
     {
         isFocused = Raycast();
-        if (isFocused)
+        /*if (isFocused)
         {
             myRenderer.material.color = Color.red;
         }
         else
         {
             myRenderer.material.color = Color.white;
-        }
+        }*/
     }
 
     private bool Raycast()
