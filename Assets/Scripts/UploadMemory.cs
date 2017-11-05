@@ -24,11 +24,11 @@ public class UploadMemory : MonoBehaviour {
         ProgramManager.memories.Add(newMemory);
         input.text = "";
         //Temp load the AR scene
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
 	}
 
 	public void cancel(){
 		input.text = "";
-		SceneManager.LoadScene(0);
+		SceneManager.LoadScene(1);
 	}
 }
