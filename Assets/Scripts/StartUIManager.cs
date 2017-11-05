@@ -19,7 +19,7 @@ public class StartUIManager : MonoBehaviour {
 
 	void Start(){
 		logInPanel.gameObject.SetActive (false);
-		signUpPanel.gameObject.SetActive (false);
+		signUpPanel.gameObject.SetActive (true);
 	}
 
 	public void showSignUp(){
