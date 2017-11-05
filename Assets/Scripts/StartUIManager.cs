@@ -44,7 +44,7 @@ public class StartUIManager : MonoBehaviour {
 			User u = new User (username, password);
 			UserList.users.Add (u);
 			UserList.curUser = u;
-
+            ProgramManager.currentUser = UserList.curUser;
 			//switch scenes
 			SceneManager.LoadScene (1);
 		}
