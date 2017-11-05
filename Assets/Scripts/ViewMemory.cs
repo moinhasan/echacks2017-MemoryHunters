@@ -29,13 +29,8 @@ public class ViewMemory : MonoBehaviour {
 	void Start () {
         //ProgramManager.memories.Add (new MemoryProperties ("Person", "Message"));
         //MemoryProperties selectedMemory = ProgramManager.memories[index];
-
-		//set all the data for the achievement
-		if (Achievements.AchievementsList [0].IsCompleted == false) {
-			popup.gameObject.SetActive (true);
-			Achievements.AchievementsList [0].IsCompleted = true;
-		}
-
+        ProgramManager.currentUser.CurrentExperience = 10;
+        popup.gameObject.SetActive(false);
         message.text =  memoryToView.Message;
 		user.text = memoryToView.User.Name + " " + memoryToView.User.Level;
 		commentPanel.gameObject.SetActive(false);
@@ -93,7 +88,14 @@ public class ViewMemory : MonoBehaviour {
 		popup.gameObject.SetActive (false);
 	}
 
-	public void back(){
-		SceneManager.LoadScene (1);
+	public void back()
+    {
+        //set all the data for the achievement
+        if (Achievements.AchievementsList[0].IsCompleted == false)
+        {
+            popup.gameObject.SetActive(true);
+            Achievements.AchievementsList[0].IsCompleted = true;
+        }
+        SceneManager.LoadScene (1);
 	}
 }

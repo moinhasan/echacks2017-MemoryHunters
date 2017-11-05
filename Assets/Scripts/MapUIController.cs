@@ -7,8 +7,11 @@ using UnityEngine.UI;
 
 public class MapUIController : MonoBehaviour {
 
+    float secondsRemaining = 86400;
+
 	public Transform AchievementsPanel;
     public Button MemoryNearbyButton;
+    bool pressed = false;
 
 	public TextMeshProUGUI task1;
 	public TextMeshProUGUI reward1;
@@ -18,28 +21,31 @@ public class MapUIController : MonoBehaviour {
 	public TextMeshProUGUI status2;
 
 	public TextMeshProUGUI exp;
+    public TextMeshProUGUI timeText;
 
-	// Use this for initialization
-	void Start () {
+    public Transform specialOrb;
 
-		exp.text = "Exp: " + ProgramManager.currentUser.CurrentExperience 
-			+ "/"+ ProgramManager.currentUser.ExperienceUntillNextLevel + "           Level: "
-			+ProgramManager.currentUser.Level;
+    // Use this for initialization
+    void Start()
+    {
 
-		AchievementsPanel.gameObject.SetActive (false);
-		Achievements.AchievementsList.Add(new Achievement("Find 1 orb",10));
-		Achievements.AchievementsList.Add(new Achievement("Find 5 orbs",100));
-<<<<<<< HEAD:Assets/MapUIController.cs
-        
-		
-=======
+        exp.text = "Exp: " + ProgramManager.currentUser.CurrentExperience
+            + "/" + ProgramManager.currentUser.ExperienceUntillNextLevel + "           Level: "
+            + ProgramManager.currentUser.Level;
 
->>>>>>> 24e4505ddf2724a3c8fafec60a2a9446d3f1f34a:Assets/Scripts/MapUIController.cs
-	}
+        AchievementsPanel.gameObject.SetActive(false);
+        Achievements.AchievementsList.Add(new Achievement("Find 1 orb", 10));
+        Achievements.AchievementsList.Add(new Achievement("Find 5 orbs", 100));
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		if(ProgramManager.memories.Count > 0 && ProgramManager.memories[0].User != ProgramManager.currentUser)
+        if(ProgramManager.memories.Count > 0 && !ProgramManager.pressed)
+        {
+            specialOrb.gameObject.SetActive(true);
+        }
+
+		if(!ProgramManager.pressed && ProgramManager.memories.Count > 0 && ProgramManager.memories[0].User != ProgramManager.currentUser)
         {
             //display button
             MemoryNearbyButton.gameObject.SetActive(true);
@@ -48,6 +54,8 @@ public class MapUIController : MonoBehaviour {
         {
             MemoryNearbyButton.gameObject.SetActive(false);
         }
+        secondsRemaining -= Time.deltaTime;
+        timeText.text = changeTime(secondsRemaining);
 	}
 
 	public void seeAchievements(){
@@ -57,7 +65,6 @@ public class MapUIController : MonoBehaviour {
 		reward1.text = "Reward: "+a1.Reward;
 		if (a1.IsCompleted) {
 			status1.text = "Status: Completed";
-			ProgramManager.currentUser.CurrentExperience = 10;
 		} else {
 			status1.text = "Status: Incompleted";
 		}
@@ -77,6 +84,19 @@ public class MapUIController : MonoBehaviour {
 
 	}
 
+    public string changeTime(float remainingSec)
+    {
+        
+        //int remainingSec = secPerDay - sec;
+        float hour, min, second;
+        hour = remainingSec / 3600;
+        remainingSec = remainingSec % 3600;
+        min = remainingSec / 60;
+        remainingSec = remainingSec % 60;
+        second = remainingSec;
+        return (int)hour + "h " + (int)min + "m " + (int)second + "s ";
+    }
+
     public void OnUploadPressed()
     {
         SceneManager.LoadScene(2);
@@ -88,6 +108,9 @@ public class MapUIController : MonoBehaviour {
     public void OnMemmoryNearbyClicked()
     {
         ViewMemory.memoryToView = ProgramManager.memories[0];
+        ProgramManager.pressed = true;
+        specialOrb.gameObject.SetActive(false);
+        MemoryNearbyButton.gameObject.SetActive(false);
         SceneManager.LoadScene(3);
     }
 }
