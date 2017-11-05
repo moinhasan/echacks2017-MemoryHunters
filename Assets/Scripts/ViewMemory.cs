@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ViewMemory : MonoBehaviour {
 
@@ -90,5 +91,9 @@ public class ViewMemory : MonoBehaviour {
 
 	public void exitPopup(){
 		popup.gameObject.SetActive (false);
+	}
+
+	public void back(){
+		SceneManager.LoadScene (1);
 	}
 }
