@@ -30,6 +30,10 @@ namespace GoogleARCore.HelloAR
     /// </summary>
     public class HelloARController : MonoBehaviour
     {
+        public GameObject memoryObject;
+
+        public static MemoryObject memObj;
+
         /// <summary>
         /// The first-person camera being used to render the passthrough camera.
         /// </summary>
@@ -71,6 +75,17 @@ namespace GoogleARCore.HelloAR
             new Color(1.0f, 0.921f, 0.231f),
             new Color(1.0f, 0.756f, 0.027f)
         };
+
+        private void Start()
+        {
+            int x = Random.Range(-40, 40);
+            int z = Random.Range(-40, 40);
+            Vector3 spawnPosition = new Vector3(x, 0, z);
+            GameObject obj = Instantiate(memoryObject, spawnPosition, Quaternion.identity);
+            memObj = obj.GetComponent<MemoryObject>();
+            memObj.Properties = ProgramManager.memories[0];
+
+        }
 
         /// <summary>
         /// The Unity Update() method.
