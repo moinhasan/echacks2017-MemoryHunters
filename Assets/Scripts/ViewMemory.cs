@@ -17,6 +17,8 @@ public class ViewMemory : MonoBehaviour {
 	public TextMeshProUGUI commentsScrollViewText;
 	public TextMeshProUGUI likesDisplay;
 
+	public Transform popup;
+
 	public string commentsForPost;
 
 
@@ -24,6 +26,13 @@ public class ViewMemory : MonoBehaviour {
 	void Start () {
         //ProgramManager.memories.Add (new MemoryProperties ("Person", "Message"));
         //MemoryProperties selectedMemory = ProgramManager.memories[index];
+
+		//set all the data for the achievement
+		if (Achievements.AchievementsList [0].IsCompleted == false) {
+			popup.gameObject.SetActive (true);
+			Achievements.AchievementsList [0].IsCompleted = true;
+		}
+
         message.text =  memoryToView.Message;
 		user.text = memoryToView.User.Name + " " + memoryToView.User.Level;
 		commentPanel.gameObject.SetActive(false);
@@ -69,5 +78,9 @@ public class ViewMemory : MonoBehaviour {
 	public void updateComment(Comment c){
 		commentsForPost+=(c.Uploader+": "+c.Message+"\n");
 		commentsScrollViewText.text = commentsForPost;
+	}
+
+	public void exitPopup(){
+		popup.gameObject.SetActive (false);
 	}
 }
