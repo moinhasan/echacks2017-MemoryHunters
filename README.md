@@ -1,1 +1,2 @@
-Winner at Electric City Hackathon (Trent University) - A Pokemon-Go inspired Unity app that allows users to leave messages around the world.
+# ECHacks 2017 
+Andrew Pochapsky, Erica Wang, Yi Xiang, Nick Crawford
